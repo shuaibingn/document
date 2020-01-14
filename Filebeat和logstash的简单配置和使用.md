@@ -42,4 +42,4 @@ Docker:
 docker pull docker.elastic.co/logstash/logstash:7.5.1
 ```
 
-3. 配置
+### 3. 配置
