@@ -1,6 +1,6 @@
 ## Filebeat和Logstash的简单配置和使用
 
-1. 介绍
+### 1. 介绍
 
 Filebeat是一个轻量级的转发和集中日志数据的托运工具, Filebeat监控指定的日志文件或位置, 收集日志事件, 并将其转发到Elasticsearch或Logstash进行索引. 
 
@@ -14,9 +14,9 @@ Logstash是一个具有实时流水线功能的开源的数据收集引擎. 它�
    
 如果想要了解 更多关于logstash, [查看官方文档](https://www.elastic.co/guide/en/logstash/current/index.html)
 
-2. 安装
+### 2. 安装
 
-Filebeat:
+#### Filebeat:
 
 mac & linux:
 ```shell script
@@ -28,7 +28,7 @@ Docker:
 docker pull docker.elastic.co/beats/filebeat:7.5.1
 ```
 
-Logstash:
+#### Logstash:
 
 确保已经安装并配置了java环境
 
