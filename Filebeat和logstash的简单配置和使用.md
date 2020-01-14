@@ -10,7 +10,9 @@
    
    如果想要了解更多关于Filebeat, [查看官方文档](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)
    
-   Logstash
+   Logstash是一个具有实时流水线功能的开源的数据收集引擎. 它可以动态规划来自不同数据来源的数据, 并将数据规范为为你选择的目标. 虽然Logstash最初被用作收集日志，但是它的功能远远超出了最初的规划. 任何类型的事件都可以通过输入(input), 过滤器(filter)和输出(output)插件来丰富和转换. 
+   
+   如果想要了解 更多关于logstash, [查看官方文档](https://www.elastic.co/guide/en/logstash/current/index.html)
 
 
    
