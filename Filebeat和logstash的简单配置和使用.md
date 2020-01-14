@@ -16,11 +16,30 @@ Logstash是一个具有实时流水线功能的开源的数据收集引擎. 它�
 
 2. 安装
 
-mac & linux:
+Filebeat:
 
+mac & linux:
 ```shell script
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.1-linux-x86_64.tar.gz
 tar -zxvf ilebeat-7.5.1-linux-x86_64.tar.gz
+```
+Docker:
+```shell script
+docker pull docker.elastic.co/beats/filebeat:7.5.1
+```
+
+Logstash:
+
+确保已经安装并配置了java环境
+
+mac & linux
+```shell script
+curl -L -O https://artifacts.elastic.co/downloads/logstash/logstash-7.5.1.tar.gz
+tar -zxvf ogstash-7.5.1.tar.gz
+```
+Docker:
+```shell script
+docker pull docker.elastic.co/logstash/logstash:7.5.1
 ```
 
 3. 配置
