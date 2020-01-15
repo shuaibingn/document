@@ -15,7 +15,7 @@ Logstash是一个具有实时流水线功能的开源的数据收集引擎. 它�
 如果想要了解 更多关于logstash, [查看官方文档](https://www.elastic.co/guide/en/logstash/current/index.html)
 
 ### 2. 安装
-- #### Filebeat:
+- ### Filebeat:
 
 mac
 ````shell script
@@ -32,7 +32,7 @@ Docker:
 docker pull docker.elastic.co/beats/filebeat:7.5.1
 ```
 
-- #### Logstash:
+- ### Logstash:
 
 mac & linux
 ```shell script
@@ -49,7 +49,7 @@ docker pull docker.elastic.co/logstash/logstash:7.5.1
 ### 3. 配置
 
 本文中主要使用Filebeat收集日志, 然后将数据转发到Logstash进行处理, 最后输出到ActiveMQ, 所以本文中也将围绕这个方向进行配置.
-- #### Logstash
+- ### Logstash
 Logstash有两个必要的基本组件(`input`和`output`)和一个可选组件(`filter`). `input`组件定义了数据的来源, `filter`组件按照你所制定的规则对数据进行修改, `output`指定组件向哪里写入数据.
 
 ![HowLogstashWork](https://github.com/unknown-admin/document/blob/master/images/basic_logstash_pipeline.png)
@@ -93,7 +93,7 @@ hello world
 ```
 我们可以看到如上所示的输出, 使用`Ctrl+d`来退出Logstash.
 
-- #### Filebeat
+- ### Filebeat
 
 在下载的Filebeat目录下, 打开`filebeat.yml`
 ```shell script
@@ -118,7 +118,7 @@ output.logstash:
 sudo ./filebeat -e -c ./filebeat.yml -d "publish"
 ```
 
-- #### 使用Logstash解析日志
+- ### 使用Logstash解析日志
 Logstash默认已经包含了`Beat input`插件, 下面这个配置将会同时启用`beat`和`stdin`input插件
 ```shell script
 beats {
@@ -165,7 +165,7 @@ echo "hello world" >> /path/to/file/logstash-tutorial.log
 
 然后观察Logstash输出结果
 
-- #### 为Logstash增加过滤规则
+- ### 为Logstash增加过滤规则
 在这里主要给大家介绍简单`grok`插件, 更多内容查看[官方文档](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
 
 grok语法分为两种: grok自带的基本匹配模式和用户自定义匹配模式.
@@ -251,7 +251,7 @@ syslog_message: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
 
 `filter plugins`[官方地址](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html)
 
-- #### 下载 & 安装
+- ### 下载 & 安装
 安装插件有两种方法, 一种直接输入命令行安装, 另一种从github下载源代码进行安装
 
 **命令行安装**
@@ -283,7 +283,7 @@ gem "logstash-output-stomp", :path => "/Users/local/logstash-output-stomp"
 bin/logstash-plugin install --no-verify
 ```
 
-- #### Logstash插件配置
+- ### Logstash插件配置
 [官方介绍](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stomp.html)已经写的很详细了，这里直接贴上配置成功之后的Logstash.conf
 ```shell script
 input {
