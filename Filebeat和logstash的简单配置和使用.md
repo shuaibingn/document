@@ -311,6 +311,18 @@ output {
 }
 ```
 
+启动Filebeat和Logstash
+```shell script
+sudo ./filebeat -e -c ./filebeat.yml -d publish
+./bin/logstash -f ./logstash.conf --config.reload.automatic
+```
+
+向日志文件输入内容, 由于`if "namespace" in [message]`, 会发现只有第二条内容被发送到了MQ
+```shell script
+echo "hello world" >> /path/to/file/logstash-tutorial.log
+echo "hello namespace" >> /path/to/file/logstash-tutorial.log
+```
+
 ### 5. 总结
 ### 6. 参考链接
 1. [Filebeat Reference](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)
