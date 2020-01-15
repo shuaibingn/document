@@ -39,3 +39,9 @@ docker pull docker.elastic.co/logstash/logstash:7.5.1
 ```
 
 ### 3. 配置
+
+本文中主要使用Filebeat收集日志, 然后将数据转发到Logstash进行处理, 最后输出到ActiveMQ, 所以本文中也将围绕这个方向进行配置.
+- Logstash
+
+
+
