@@ -225,6 +225,16 @@ filter {
 }
 ```
 
-sha
+上面的过滤的过滤条件将会匹配到一下字段
+```shell script
+timestamp: Jan  1 06:25:43
+logsource: mailserver14
+program: postfix/cleanup
+pid: 21403
+queue_id: BEF25A72965
+syslog_message: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
+```
+
+### 4. 插件
 
 
