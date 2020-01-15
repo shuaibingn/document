@@ -113,3 +113,52 @@ output.logstash:
   hosts: ["localhost": 5044]
 ```
 
+保存配置, 并使用以下命令运行Filebeat
+```shell script
+sudo ./filebeat -e -c ./filebeat.yml -d "publish"
+```
+
+- #### 使用Logstash解析日志
+Logstash默认已经包含了`Beat input`插件, 下面这个配置将会同时启用`beat`和`stdint`input插件
+```shell script
+beats {
+    port => "5044"
+    client_inactivity_timeout => 3000
+}
+stdin {}
+```
+
+下面的配置会将接收到的数据打印到标准输出
+```shell script
+stdout {}
+```
+
+完成上边两步之后, logstash.conf看起来应该是这样的
+```shell script
+input {
+    beats {
+        port => "5044"
+        client_inactivity_timeout => 3000
+    }
+    stdin {}
+}
+output {
+    stdout {}
+}
+```
+
+检查配置文件语法是否正确
+```shell script
+bin/logstash -f logstash.conf --config.test_and_exit
+```
+
+如果通过了问价检查, 我们就可以执行下面这条命令指定配置文件来运行Logstash
+```shell script
+bin/logstash -f logstash.conf --config.reload.automatic
+```
+`--config.reload.automatic`可以在Logstash不重启的情况下自动加载配置文件
+
+这时候, 我们就可以往Filebeat监控的文件中写入数据了
+```shell script
+echo "hello world" >> /path/to/file/logstash-tutorial.log
+```
