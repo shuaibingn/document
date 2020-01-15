@@ -17,7 +17,12 @@ Logstash是一个具有实时流水线功能的开源的数据收集引擎. 它�
 ### 2. 安装
 - #### Filebeat:
 
-mac & linux:
+mac
+````shell script
+curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.1-darwin-x86_64.tar.gz
+tar xzvf filebeat-7.5.1-darwin-x86_64.tar.gz
+````
+linux:
 ```shell script
 curl -L -O https://artifacts.elastic.co/downloads/beats/filebeat/filebeat-7.5.1-linux-x86_64.tar.gz
 tar -zxvf filebeat-7.5.1-linux-x86_64.tar.gz
@@ -26,6 +31,7 @@ Docker:
 ```shell script
 docker pull docker.elastic.co/beats/filebeat:7.5.1
 ```
+
 - #### Logstash:
 
 mac & linux
@@ -37,6 +43,8 @@ Docker:
 ```shell script
 docker pull docker.elastic.co/logstash/logstash:7.5.1
 ```
+
+更多下载方式, [参考官方文档](https://www.elastic.co/cn/downloads/logstash)
 
 ### 3. 配置
 
@@ -85,4 +93,10 @@ hello world
 ```
 我们可以看到如上所示的输出, 使用`Ctrl+d`来退出Logstash.
 
+- #### Filebeat
+
+在下载的Filebeat目录下, 打开`filebeat.yml`
+```shell script
+cd 
+```
 
