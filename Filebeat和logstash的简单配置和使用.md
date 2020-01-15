@@ -128,10 +128,14 @@ beats {
 stdin {}
 ```
 
+更多`input`插件详见[官方文档](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)
+
 下面的配置会将接收到的数据打印到标准输出
 ```shell script
 stdout {}
 ```
+
+更多`output`插件详见[官方文档](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
 
 完成上边两步之后, logstash.conf看起来应该是这样的
 ```shell script
@@ -162,3 +166,5 @@ bin/logstash -f logstash.conf --config.reload.automatic
 ```shell script
 echo "hello world" >> /path/to/file/logstash-tutorial.log
 ```
+
+- #### 为Logstash增加过滤规则
