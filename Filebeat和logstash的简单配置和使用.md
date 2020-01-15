@@ -277,6 +277,40 @@ bin/logstash-plugin install --no-verify
 ```
 
 - #### Logstash插件配置
+[官方介绍](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stomp.html)已经写的很详细了，这里直接贴上配置成功之后的
+```shell script
+input {
+    beats {
+        port => "5044"
+        client_inactivity_timeout => 3000
+    }   
+    stdin {}
+}
+
+filter {
+    if "namespace" in [message] {
+        grok {
+            match => { "message" => "%{DATA:data}event%{GREEDYDATA:tag}endevent" }
+        }
+        mutate{
+            # 这些字段不需要发送到MQ, 在这里可以移除
+            remove_field => ["@version", "data", "message", "@timestamp", "log", "host", "ecs", "tags", "agent", "input"]
+        }   
+    }   
+}
+
+output {
+    stomp {
+        host => "localhost"
+        port => "61613"
+        destination => "/queue/test"
+        user => "admin"
+        password => "admin"
+    }   
+    stdout {}
+}
+```
+
 
 
 
