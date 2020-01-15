@@ -271,11 +271,12 @@ vim Gemfile
 gem "logstash-output-stomp", :path => "/Users/local/logstash-output-stomp"
 ```
 
-然后执行
+然后执行, 安装完成
 ```shell script
 bin/logstash-plugin install --no-verify
 ```
 
+- #### Logstash插件配置
 
 
 
