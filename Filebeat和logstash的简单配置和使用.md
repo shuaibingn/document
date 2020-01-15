@@ -214,7 +214,7 @@ POSTFIX_QUEUEID [0-9A-F]{10,11}
 
 借用官网上的例子
 ```shell script
-    Jan  1 06:25:43 mailserver14 postfix/cleanup[21403]: BEF25A72965: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
+Jan 1 06:25:43 mailserver14 postfix/cleanup[21403]: BEF25A72965: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
 ```
 ```shell script
 filter {
