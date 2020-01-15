@@ -152,7 +152,7 @@ output {
 bin/logstash -f logstash.conf --config.test_and_exit
 ```
 
-如果通过了问价检查, 我们就可以执行下面这条命令指定配置文件来运行Logstash
+如果通过了文件检查, 我们就可以执行下面这条命令指定配置文件来运行Logstash
 ```shell script
 bin/logstash -f logstash.conf --config.reload.automatic
 ```
