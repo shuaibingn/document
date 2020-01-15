@@ -167,4 +167,8 @@ bin/logstash -f logstash.conf --config.reload.automatic
 echo "hello world" >> /path/to/file/logstash-tutorial.log
 ```
 
-- #### 为Logstash增加过滤规则
++ #### 为Logstash增加过滤规则
+在这里主要给大家介绍简单`grok`这个过滤插件, 更多内容查看[官方文档](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
+
+  + 语法
+
