@@ -171,6 +171,7 @@ echo "hello world" >> /path/to/file/logstash-tutorial.log
 在这里主要给大家介绍简单`grok`这个过滤插件, 更多内容查看[官方文档](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
 
 **grok语法**
+
 grok语法分为两种: grok自带和用户自定义.
 
 
