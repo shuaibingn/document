@@ -44,7 +44,9 @@ docker pull docker.elastic.co/logstash/logstash:7.5.1
 - #### Logstash
 Logstash有两个必要的基本组件(`input`和`output`)和一个可选组件(`filter`). `input`组件定义了数据的来源, `filter`组件按照你所制定的规则对数据进行修改, `output`指定组件向哪里写入数据.
 
-![HowLogstashWork]()
+![HowLogstashWork](https://github.com/unknown-admin/document/blob/master/images/basic_logstash_pipeline.png)
+
+
 
 
 
