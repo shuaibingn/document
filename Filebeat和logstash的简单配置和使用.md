@@ -170,10 +170,61 @@ echo "hello world" >> /path/to/file/logstash-tutorial.log
 - #### 为Logstash增加过滤规则
 在这里主要给大家介绍简单`grok`这个过滤插件, 更多内容查看[官方文档](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
 
-**grok语法**
+##### **grok语法**
+grok语法分为两种: grok自带的基本匹配模式和用户自定义匹配模式.
 
-grok语法分为两种: grok自带和用户自定义.
+**基本匹配模式**
 
+grok模块提供了基本匹配模式，语法为
+```shell script
+%{SYNTAX:SEMANTIC}
+```
+其中SYNTAX为匹配模式的名称, 用于调用相应的匹配模式匹配文本, 如: 3.44 会被NUBER模式所匹配, 而10.10.10.1会被IP模式所匹配.
 
+而SEMANTIC则是用于标记被匹配到的文本内容, 如10.10.10.1被IP模式所匹配, 并编辑为ClientIP.
+
+例如：
+```shell script
+%{NUMBER:duration} %{IP:ClientIP}
+```
+
+**自定义匹配模式**
+
+Grok模块是基于正则表达式做匹配的, 因此当基本匹配模式不足以满足我们的需求时, 我们还自定义模式编译相应的匹配规则.
+
+语法为
+```shell script
+(?<field_name>the pattern here)
+```
+
+例如
+```shell script
+(?<queue_id>[0-9A-F]{10,11})
+```
+
+为了更好的使用, 我们可以创建一个`patterns`文件夹, 然后在文件夹中创建`extra`文件(文件名可以自定义)
+
+在文件中写入
+```shell script
+vim extra
+POSTFIX_QUEUEID [0-9A-F]{10,11}
+```
+
+然后使用`patterns_dir`来设置自定义规则所在的路径
+
+借用官网上的例子
+```shell script
+    Jan  1 06:25:43 mailserver14 postfix/cleanup[21403]: BEF25A72965: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
+```
+```shell script
+filter {
+    grok {
+        patterns_dir => ["./patterns"]
+        match => { "message" => "%{SYSLOGBASE} %{POSTFIX_QUEUEID:queue_id}: %{GREEDYDATA:syslog_message}" }
+    }
+}
+```
+
+sha
 
 
