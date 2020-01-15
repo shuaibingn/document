@@ -46,7 +46,43 @@ Logstash有两个必要的基本组件(`input`和`output`)和一个可选组件(
 
 ![HowLogstashWork](https://github.com/unknown-admin/document/blob/master/images/basic_logstash_pipeline.png)
 
+运行下面的命令，来测试你的Logstash是否正常
+```shell script
+cd logstash-7.5.1
+bin/logstash -e 'input { stdin {} } output { stdout {} }'
+```
+`-e`表示从命令行中读取配置. 在这个例子中可以看到，我们定义个两个组件`input`和`output`, 分别从控制台接收数据，并输出到控制台
 
-
+如果成功运行，可以看到如下结果
+```shell script
+Java HotSpot(TM) 64-Bit Server VM warning: Option UseConcMarkSweepGC was deprecated in version 9.0 and will likely be removed in a future release.
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by com.headius.backport9.modules.Modules (file:/usr/local/logstash-7.5.0/logstash-core/lib/jars/jruby-complete-9.2.8.0.jar) to field java.io.FileDescriptor.fd
+WARNING: Please consider reporting this to the maintainers of com.headius.backport9.modules.Modules
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Thread.exclusive is deprecated, use Thread::Mutex
+Sending Logstash logs to /usr/local/logstash-7.5.0/logs which is now configured via log4j2.properties
+[2020-01-15T11:42:36,556][WARN ][logstash.config.source.multilocal] Ignoring the 'pipelines.yml' file because modules or command line options are specified
+[2020-01-15T11:42:36,651][INFO ][logstash.runner          ] Starting Logstash {"logstash.version"=>"7.5.0"}
+[2020-01-15T11:42:37,608][INFO ][org.reflections.Reflections] Reflections took 29 ms to scan 1 urls, producing 20 keys and 40 values 
+[2020-01-15T11:42:37,975][WARN ][org.logstash.instrument.metrics.gauge.LazyDelegatingGauge][main] A gauge metric of an unknown type (org.jruby.RubyArray) has been create for key: cluster_uuids. This may result in invalid serialization.  It is recommended to log an issue to the responsible developer/development team.
+[2020-01-15T11:42:37,989][INFO ][logstash.javapipeline    ][main] Starting pipeline {:pipeline_id=>"main", "pipeline.workers"=>2, "pipeline.batch.size"=>125, "pipeline.batch.delay"=>50, "pipeline.max_inflight"=>250, "pipeline.sources"=>["config string"], :thread=>"#<Thread:0x626b1ea6 run>"}
+[2020-01-15T11:42:38,025][INFO ][logstash.javapipeline    ][main] Pipeline started {"pipeline.id"=>"main"}
+The stdin plugin is now waiting for input:
+[2020-01-15T11:42:38,064][INFO ][logstash.agent           ] Pipelines running {:count=>1, :running_pipelines=>[:main], :non_running_pipelines=>[]}
+[2020-01-15T11:42:38,214][INFO ][logstash.agent           ] Successfully started Logstash API endpoint {:port=>9600}
+```
+运行成功后，我们可以直接在控制台输入`hello world`
+```shell script
+hello world
+{
+       "message" => "hello world",
+          "host" => "exampleMBP.lan",
+    "@timestamp" => 2020-01-15T03:49:44.853Z,
+      "@version" => "1"
+}
+```
+我们可以看到如上所示的输出, 使用`CTRL+d`来退出Logstash.
 
 
