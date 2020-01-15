@@ -225,9 +225,9 @@ filter {
 }
 ```
 
-上面的过滤的过滤条件将会匹配到一下字段
+上面的过滤条件将会匹配到以下字段
 ```shell script
-timestamp: Jan  1 06:25:43
+timestamp: Jan 1 06:25:43
 logsource: mailserver14
 program: postfix/cleanup
 pid: 21403
