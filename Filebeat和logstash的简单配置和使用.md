@@ -119,7 +119,7 @@ sudo ./filebeat -e -c ./filebeat.yml -d "publish"
 ```
 
 - #### 使用Logstash解析日志
-Logstash默认已经包含了`Beat input`插件, 下面这个配置将会同时启用`beat`和`stdint`input插件
+Logstash默认已经包含了`Beat input`插件, 下面这个配置将会同时启用`beat`和`stdin`input插件
 ```shell script
 beats {
     port => "5044"
@@ -128,14 +128,10 @@ beats {
 stdin {}
 ```
 
-更多`input`插件详见[官方文档](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)
-
 下面的配置会将接收到的数据打印到标准输出
 ```shell script
 stdout {}
 ```
-
-更多`output`插件详见[官方文档](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
 
 完成上边两步之后, logstash.conf看起来应该是这样的
 ```shell script
@@ -167,10 +163,11 @@ bin/logstash -f logstash.conf --config.reload.automatic
 echo "hello world" >> /path/to/file/logstash-tutorial.log
 ```
 
-- #### 为Logstash增加过滤规则
-在这里主要给大家介绍简单`grok`这个过滤插件, 更多内容查看[官方文档](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
+然后观察Logstash输出结果
 
-##### **grok语法**
+- #### 为Logstash增加过滤规则
+在这里主要给大家介绍简单`grok`插件, 更多内容查看[官方文档](https://www.elastic.co/guide/en/logstash/current/plugins-filters-grok.html).
+
 grok语法分为两种: grok自带的基本匹配模式和用户自定义匹配模式.
 
 **基本匹配模式**
@@ -210,22 +207,32 @@ vim extra
 POSTFIX_QUEUEID [0-9A-F]{10,11}
 ```
 
-然后使用`patterns_dir`来设置自定义规则所在的路径
-
-借用官网上的例子
+借用官网上的例子, 将下面数据写入日志
 ```shell script
-Jan 1 06:25:43 mailserver14 postfix/cleanup[21403]: BEF25A72965: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
+echo "Jan 1 06:25:43 mailserver14 postfix/cleanup[21403]: BEF25A72965: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>" >> /path/to/file/logstash-tutorial.log
 ```
+
+这时候, 使用`patterns_dir`来设置自定义规则所在的路径, Logstash的配置文件应该是这样的
 ```shell script
+input {
+    beats {
+        port => "5044"
+        client_inactivity_timeout => 3000
+    }   
+    stdin {}
+}
 filter {
     grok {
         patterns_dir => ["./patterns"]
         match => { "message" => "%{SYSLOGBASE} %{POSTFIX_QUEUEID:queue_id}: %{GREEDYDATA:syslog_message}" }
     }
 }
+output {
+    stdout {}
+}
 ```
 
-上面的过滤条件将会匹配到以下字段
+运行Logstash将会匹配到以下字段
 ```shell script
 timestamp: Jan 1 06:25:43
 logsource: mailserver14
