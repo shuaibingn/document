@@ -83,6 +83,6 @@ hello world
       "@version" => "1"
 }
 ```
-我们可以看到如上所示的输出, 使用`CTRL+d`来退出Logstash.
+我们可以看到如上所示的输出, 使用`Ctrl+d`来退出Logstash.
 
 
