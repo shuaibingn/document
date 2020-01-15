@@ -311,6 +311,13 @@ output {
 }
 ```
 
+### 5. 总结
+### 6. 参考链接
+1. [Filebeat Reference](https://www.elastic.co/guide/en/beats/filebeat/current/index.html)
+2. [Logstash Reference](https://www.elastic.co/guide/en/logstash/current/index.html)
+3. [FileBeat-Log 相关配置指南](https://www.cyhone.com/articles/usage-of-filebeat-log-config/)
+4. [Logstash使用grok进行日志过滤](https://www.jianshu.com/p/49ae54a411b8)
+
 
 
 
