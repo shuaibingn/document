@@ -15,7 +15,7 @@ Logstash是一个具有实时流水线功能的开源的数据收集引擎. 它�
 如果想要了解 更多关于logstash, [查看官方文档](https://www.elastic.co/guide/en/logstash/current/index.html)
 
 ### 2. 安装
-#### Filebeat:
+- #### Filebeat:
 
 mac & linux:
 ```shell script
@@ -26,7 +26,7 @@ Docker:
 ```shell script
 docker pull docker.elastic.co/beats/filebeat:7.5.1
 ```
-#### Logstash:
+- #### Logstash:
 
 mac & linux
 ```shell script
@@ -41,7 +41,7 @@ docker pull docker.elastic.co/logstash/logstash:7.5.1
 ### 3. 配置
 
 本文中主要使用Filebeat收集日志, 然后将数据转发到Logstash进行处理, 最后输出到ActiveMQ, 所以本文中也将围绕这个方向进行配置.
-- Logstash
+- #### Logstash
 
 
 
