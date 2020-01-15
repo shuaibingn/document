@@ -42,6 +42,9 @@ docker pull docker.elastic.co/logstash/logstash:7.5.1
 
 本文中主要使用Filebeat收集日志, 然后将数据转发到Logstash进行处理, 最后输出到ActiveMQ, 所以本文中也将围绕这个方向进行配置.
 - #### Logstash
+Logstash有两个必要的基本组件(`input`和`output`)和一个可选组件(`filter`). `input`组件定义了数据的来源, `filter`组件按照你所制定的规则对数据进行修改, `output`指定组件向哪里写入数据.
+
+![HowLogstashWork]()
 
 
 
