@@ -97,6 +97,19 @@ hello world
 
 在下载的Filebeat目录下, 打开`filebeat.yml`
 ```shell script
-cd 
+cd filebeat-7.5.1-darwin-x86_64
+sudo vim filebeat.yml
+```
+
+这是filebeat.yml的部分配置，大部分情况下使用默认配置即可.
+```
+filebeat.inputs:
+- type: log
+  enabled: true
+  paths:
+    # Filebeat处理文件的绝对路径
+    - /path/to/file/logstash-tutorial.log
+output.logstash:
+  hosts: ["localhost": 5044]
 ```
 
