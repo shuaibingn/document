@@ -235,6 +235,47 @@ queue_id: BEF25A72965
 syslog_message: message-id=<20130101142543.5828399CCAF@mailserver14.example.com>
 ```
 
-### 4. 插件
+### 4. Logstash插件
+本文主要以`logstash-output-stomp`插件为例, 举例如何将收集处理后的消息发送到ActiveMQ. [github地址](https://github.com/logstash-plugins/logstash-output-stomp)
+
+`input pugins`[官方地址](https://www.elastic.co/guide/en/logstash/current/input-plugins.html)
+
+`output plugins`[官方地址](https://www.elastic.co/guide/en/logstash/current/output-plugins.html)
+
+`filter plugins`[官方地址](https://www.elastic.co/guide/en/logstash/current/filter-plugins.html)
+
+- #### 下载 & 安装
+安装插件有两种方法, 一种直接输入命令行安装, 另一种从github下载源代码进行安装
+
+**命令行安装**
+```shell script
+bin/logstash-plugin install logstash-output-kafka
+```
+
+**下载源代码安装**
+
+首先根据官网查找到自己想要安装的插件, 找到自己喜欢的一个目录, 例如`/usr/local`
+```shell script
+git clone https://github.com/logstash-plugins/logstash-output-stomp.git
+```
+
+进入所下载插件目录, 编译插件
+```shell script
+cd /usr/local/logstash-output-stomp
+gem build logstash-output-stomp.gemspec
+```
+
+进入Logstash安装目录, 打开`Gemfile`, 并添加以下代码
+```shell script
+vim Gemfile
+gem "logstash-output-stomp", :path => "/Users/local/logstash-output-stomp"
+```
+
+然后执行
+```shell script
+bin/logstash-plugin install --no-verify
+```
+
+
 
 
