@@ -277,7 +277,7 @@ bin/logstash-plugin install --no-verify
 ```
 
 - #### Logstash插件配置
-[官方介绍](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stomp.html)已经写的很详细了，这里直接贴上配置成功之后的
+[官方介绍](https://www.elastic.co/guide/en/logstash/current/plugins-outputs-stomp.html)已经写的很详细了，这里直接贴上配置成功之后的Logstash.conf
 ```shell script
 input {
     beats {
